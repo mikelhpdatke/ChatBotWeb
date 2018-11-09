@@ -10,7 +10,7 @@ const Main = () => (
     <Switch>
       <Route exact path='/' component={Home}/>
       
-      <Route path='/thongke' component={() => <ThongKe num={[13, 10000, 30]}/>}/>
+      <Route path='/thongke' component={() => <ThongKe/>}/>
       
     </Switch>
   </main>

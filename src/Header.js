@@ -9,7 +9,7 @@ const Menu = () => (
                         color: "red",
                         textDecoration: "underline"
                     }}>Trang chủ </NavLink>
-                    <NavLink style={{ color: "black", fontWeight: "bold" }} className="nav-item nav-link" to='/user_management' activeStyle={{
+                    <NavLink style={{ color: "black", fontWeight: "bold" }} className="nav-item nav-link" to='/thongke' activeStyle={{
                         fontWeight: "bold",
                         color: "red",
                         textDecoration: "underline"

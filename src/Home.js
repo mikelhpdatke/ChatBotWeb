@@ -9,7 +9,7 @@ class AskAns extends Component {
       ans: "sss"
     };
     this.handleChange = this.handleChange.bind(this);
-    //this.handleSubmit = this.handleSubmit.bind(this);
+    
   }
 
   handleChange(event) {
@@ -18,8 +18,9 @@ class AskAns extends Component {
     const name = target.name;
     if (name === "ask" || name === "ans") {
       this.setState({ [name]: event.target.value });
-      console.log(this.state.ans);
+      //console.log(this.state.ans);
     }
+    this.props.onChange(name, event.target.value);
   }
 
   render() {
@@ -32,7 +33,7 @@ class AskAns extends Component {
           <textarea
             name="ask"
             class="form-control"
-            rows="5"
+            rows="4"
             id="comment"
             onChange={this.handleChange}
           >
@@ -46,7 +47,7 @@ class AskAns extends Component {
           <textarea
             name="ans"
             class="form-control"
-            rows="5"
+            rows="9"
             id="comment"
             onChange={this.handleChange}
           >
@@ -152,6 +153,7 @@ class CheckboxContainer extends Component {
     this.setState(prevState => ({
       checkedItems: prevState.checkedItems.set(item, isChecked)
     }));
+    this.props.onChange("checkedItems", this.state.checkedItems);
   }
 
   
@@ -190,16 +192,36 @@ class CheckboxContainer extends Component {
 }
 
 class Home extends Component {
+    constructor(props){
+        super(props);
+        this.state = {data:{}};
+        this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleChange = this.handleChange.bind(this);
+    }
+
+    handleChange(key, val){
+        let newData = this.state.data;
+        //console.log(this.state);
+        newData[key] = val;
+        this.setState({
+            data:newData
+        })
+        console.log(newData);
+    }
+    handleSubmit(e){
+        //alert(this.state);
+        e.preventDefault();
+    }
   render() {
     return (
       <div class="container">
         <div class="row justify-content-between">
-          <AskAns />
-          <CheckboxContainer/>
+          <AskAns onChange={this.handleChange}/>
+          <CheckboxContainer onChange={this.handleChange}/>
         </div>
         <br />
         <div class="row justify-content-around">
-          <button type="button" class="btn btn-outline-success">
+          <button type="button" class="btn btn-outline-success" onClick={this.handleSubmit}>
             Submit
           </button>
         </div>
